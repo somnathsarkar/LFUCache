@@ -8,7 +8,7 @@ template <typename T>
 class FrequencyList {
 private:
 	int count;
-	std::unordered_map<T, T> nodelist;
+	std::unordered_map<int, int> nodelist;
 	FrequencyList *left;
 	FrequencyList *right;
 public:

@@ -35,7 +35,7 @@ void FrequencyList<T>::Add(T node) {
 
 template <typename T>
 void FrequencyList<T>::Delete(T node) {
-	if (NodePresent(node)) {
+	if (IsPresent(node)) {
 		// node present.
 		this->nodelist.erase(node);
 	}
@@ -52,7 +52,7 @@ void FrequencyList<T>::PrintNodeList() {
 
 template <typename T>
 bool FrequencyList<T>::IsPresent(T node) {
-	std::unordered_map<T, T>::const_iterator iter = this->nodelist.find(node);
+	std::unordered_map<int, int>::const_iterator iter = this->nodelist.find(node);
 	return !(iter == this->nodelist.end());
 }
 
@@ -85,3 +85,5 @@ template <typename T>
 bool FrequencyList<T>::IsEmpty() {
 	return this->nodelist.empty();
 }
+
+template class FrequencyList<int>;

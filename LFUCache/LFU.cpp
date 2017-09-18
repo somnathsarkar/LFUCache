@@ -16,30 +16,6 @@ LFU::~LFU() {
 //Adds an item to the cache
 void LFU::Set(int value) {
 	int node = value;
-	
-		int freq = 1;
-		if (FrequencyNodePresent(freq)) {
-			FrequencyList<int> *frequencyList1 = this->CountFrequencyListMap.find(freq)->second;
-			frequencyList1->Add(node);
-			this->NodeFrequencyListMap[node] = frequencyList1;
-		}
-		else {
-			FrequencyList<int> *newFrequencyNode = new FrequencyList<int>(freq);
-			this->CountFrequencyListMap[freq] = newFrequencyNode;
-			newFrequencyNode->SetPrevious(this->head);
-			newFrequencyNode->SetNext(this->head->GetNext());
-			newFrequencyNode->Add(node);
-
-			this->head->SetNext(newFrequencyNode);
-			if (newFrequencyNode->GetNext() != NULL)
-				newFrequencyNode->GetNext()->SetPrevious(newFrequencyNode);
-			this->NodeFrequencyListMap[node] = newFrequencyNode;
-		}
-
-}
-
-//Retrieve a value from the cache
-void LFU::Retrieve(int node) {
 	if (NodePresent(node)) {
 		std::unordered_map<int, FrequencyList<int> *>::const_iterator iter1 = this->NodeFrequencyListMap.find(node);
 		FrequencyList<int> *frequencyList = iter1->second;
@@ -75,7 +51,30 @@ void LFU::Retrieve(int node) {
 			free(frequencyList);
 		}
 	}
-	else
+	else {
+		int freq = 1;
+		if (FrequencyNodePresent(freq)) {
+			FrequencyList<int> *frequencyList1 = this->CountFrequencyListMap.find(freq)->second;
+			frequencyList1->Add(node);
+			this->NodeFrequencyListMap[node] = frequencyList1;
+		}
+		else {
+			FrequencyList<int> *newFrequencyNode = new FrequencyList<int>(freq);
+			this->CountFrequencyListMap[freq] = newFrequencyNode;
+			newFrequencyNode->SetPrevious(this->head);
+			newFrequencyNode->SetNext(this->head->GetNext());
+			newFrequencyNode->Add(node);
+
+			this->head->SetNext(newFrequencyNode);
+			if (newFrequencyNode->GetNext() != NULL)
+				newFrequencyNode->GetNext()->SetPrevious(newFrequencyNode);
+			this->NodeFrequencyListMap[node] = newFrequencyNode;
+		}
+	}
+}
+
+//Retrieve a value from the cache
+void LFU::Retrieve(int node) {
 		Set(node);
 }
 

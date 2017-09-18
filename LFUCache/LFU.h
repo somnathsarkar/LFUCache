@@ -9,7 +9,7 @@ private:
 	std::unordered_map<int, FrequencyList<int>* > CountFrequencyListMap;
 	FrequencyList<int> *head;
 
-	void Evict(int value);
+	void Set(int value);
 	bool NodePresent(int node);
 	bool FrequencyNodePresent(int count);
 	bool IsNodeEmpty(FrequencyList<int> *frequencyList);
@@ -17,8 +17,8 @@ public:
 	LFU();
 	~LFU();
 
-	void Set(int value);
 	void Retrieve(int value);
+	void Evict(int value);
 	void PrintLFU();
 };
 
