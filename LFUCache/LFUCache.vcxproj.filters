@@ -29,5 +29,8 @@
     <ClCompile Include="LFU.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LFUTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

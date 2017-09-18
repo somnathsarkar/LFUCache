@@ -25,6 +25,7 @@
   <ItemGroup>
     <ClCompile Include="FrequencyList.cpp" />
     <ClCompile Include="LFU.cpp" />
+    <ClCompile Include="LFUTest.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A7EBE7E4-279D-4E84-9F41-3A83723A6512}</ProjectGuid>
